@@ -30,17 +30,20 @@ namespace DieRoller
 
 		/// <summary>
 		/// Rolls the die and sets the <see cref="faceValue"/>
-		/// to the new number
+		/// to the new number if the die is not currently held.
+		/// Retyrns the <see cref="faceValue"/>
 		/// </summary>
 		/// <returns> Returns the new random number </returns>
-        public byte Roll()
+		public byte Roll()
 		{
-			// Generate random number
-			Random random = new();
-			byte newValue = (byte)random.Next(1, 7);
+			if (!IsHeld)
+			{
+				// Generate random number
+				Random random = new();
+				byte newValue = (byte)random.Next(1, 7);
 
-			FaceValue = newValue;
-
+				FaceValue = newValue;
+			}
 			return FaceValue;
 		}
     }
